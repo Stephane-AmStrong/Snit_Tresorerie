@@ -1,0 +1,48 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <li>
+        <a>
+            <i class="fas fa-user"></i>
+            @User.FindFirstValue(ClaimTypes.GivenName) @User.FindFirstValue(ClaimTypes.Surname)
+        </a>
+
+    </li>
+
+    @if (@User.FindFirstValue(ClaimTypes.Role) == "Client")
+    {
+        <li id="nav-my-account">
+            <a asp-controller="Home" asp-action="Calendar">Calendrier</a>
+        </li>
+        <li id="nav-my-account">
+            <a asp-controller="MyPayments" asp-action="Index">
+                Factures
+            </a>
+        </li>
+    }
+    else
+    {
+        @if (@User.FindFirstValue(ClaimTypes.Role) == "Organisateur")
+        {
+            <li id="nav-my-account">
+                <a asp-controller="MyAccount" asp-action="Index">Mon compte</a>
+            </li>
+        }
+
+        else
+        {
+            <li id="nav-my-account">
+                <a asp-controller="Dashboard" asp-action="Index">Mon compte</a>
+            </li>
+        }
+
+    }
+
+
+
+    <li>
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Déconnexion" class="custom-btn" @*class="ml-2"*@ />
+        </form>
+    </li>
+}
+

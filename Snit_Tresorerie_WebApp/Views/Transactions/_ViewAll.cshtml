@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TransactionResponse>
+
+<div class="row">
+
+    @foreach (var transaction in Model)
+    {
+        <partial name="TransactionCard" for="@transaction"/>
+    }
+</div>

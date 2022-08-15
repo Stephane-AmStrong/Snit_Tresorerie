@@ -1,0 +1,59 @@
+﻿@model LoginRequest
+@inject IRepositoryWrapper repository
+
+<div class="rightside-content text-center">
+
+    <div class="mb-30">
+        <h2 class="form-title title-large white-color">Compte <strong>Connexion</strong></h2>
+        <span class="form-subtitle white-color">Se connecter à notre site web, ou <strong>INSCRIVEZ-VOUS</strong></span>
+    </div>
+
+    <div class="fb-login-btn mb-30">
+        <a href="#!">
+            <span class="icon">
+                <i class="fab fa-facebook-f"></i>
+            </span>
+            Se connecter avec facebook
+        </a>
+    </div>
+
+    <div class="or-text mb-30">
+        <span>ou inscrivez-vous</span>
+    </div>
+
+    <div class="login-form text-center mb-50">
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-item">
+                <input asp-for="Email" placeholder="example@gmail.com">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-item">
+                <input asp-for="Password" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="login-btn">Se connecter maintenant</button>
+        </form>
+
+
+        <p class="mb-1">
+            <a asp-controller="Account" asp-action="ForgotPassword">J'ai oublié mon mot de passe</a>
+        </p>
+        @if (await repository.Account.CountUsersAsync() < 1)
+        {
+            <p class="mb-0">
+                <a asp-controller="Account" asp-action="RegisterAdmin" class="text-center">S'inscrire comme nouveau membre</a>
+            </p>
+        }
+        else
+        {
+            <p class="mb-0">
+                <a asp-controller="Account" asp-action="Register" class="text-center">S'inscrire comme nouveau membre</a>
+            </p>
+        }
+
+    </div>
+
+
+</div>

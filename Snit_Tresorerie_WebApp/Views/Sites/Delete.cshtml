@@ -1,0 +1,21 @@
+﻿@model SiteResponse
+
+@{ Layout = null; }
+
+<form enctype="multipart/form-data" method="post" asp-controller="Sites" asp-action="DeleteSite" asp-route-id="@Model.Id"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
+      data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">
+    <div class="modal-body">
+        <p>Etês vous sûr de vouloir supprimer ce @ViewBag.Title ?</p>
+
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" readonly />
+        </div>
+    </div>
+
+    <div class="modal-footer justify-content-between">
+        <input type="submit" value="Delete" class="btn btn-danger btn-block" />
+    </div>
+</form>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SiteResponse>
+
+@{
+    ViewBag.Title = "Site";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des Sites</h3>
+                    </div>
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm float-right">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" id="view-all">
+                        @await Html.PartialAsync("_ViewAll", Model)
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $("#navSites").attr("class", "nav-link active");
+
+    });
+</script>
+}

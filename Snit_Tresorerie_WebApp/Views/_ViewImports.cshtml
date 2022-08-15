@@ -1,0 +1,17 @@
+﻿@using Snit_Tresorerie_WebApp
+@using Microsoft.AspNetCore.Http
+@using Entities.ViewModels
+@using Entities.DataTransfertObjects
+@using Entities.RequestFeatures
+@using System.Text.Json
+@using System.Security.Claims;
+@using Snit_Tresorerie_WebApp.Wrapper
+@using Microsoft.AspNetCore.Authorization
+@using Contracts;
+@using Microsoft.Extensions.Configuration;
+@using Snit_Tresorerie_WebApp.Extensions;
+
+@inject IAuthorizationService AuthorizationService
+@inject IConfiguration Configuration
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

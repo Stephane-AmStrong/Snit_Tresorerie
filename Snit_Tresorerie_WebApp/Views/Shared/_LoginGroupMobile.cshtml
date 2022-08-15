@@ -1,0 +1,158 @@
+﻿@model HomeViewModel
+<div class="login-btn-group">
+    <ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+
+        }
+        else
+        {
+            <li>
+                <a href="#alt-register-modal" class="register-modal-btn">
+                    Inscription
+                </a>
+                <div id="alt-register-modal" class="reglog-modal-wrapper register-modal mfp-hide clearfix" style="background-image: url(~/templates/assets/images/login-modal-bg.jpg);">
+                    <div class="overlay-black clearfix">
+
+                        <!-- leftside-content - start -->
+                    <div class="leftside-content">
+                            <div class="site-logo-wrapper mb-80">
+                                <a href="#!" class="logo">
+                                    <img src="~/templates/assets/images/logo sidebar.png" alt="logo_not_found">
+                                </a>
+                            </div>
+                            <div class="register-login-link mb-80">
+                                <ul>
+                                    <li><a href="#!">Connexion</a></li>
+                                    <li class="active"><a href="#!">Inscription</a></li>
+                                </ul>
+                            </div>
+                            <div class="copyright-text">
+                                <p class="m-0">©2021 <a href="#!" class="yellow-color">Snit Tresorerie</a></p>
+                            </div>
+                        </div>
+                        <!-- leftside-content - end -->
+                        <!-- rightside-content - start -->
+                    <div class="rightside-content text-center">
+
+                            <div class="mb-30">
+                                <h2 class="form-title title-large white-color">Compte <strong>Inscription</strong></h2>
+                                <span class="form-subtitle white-color">Vous avez un compte ? <strong>CONNECTEZ-VOUS MAINTENANT</strong></span>
+                            </div>
+
+                            <div id="register-form" class="login-form text-center mb-50">
+
+                                <partial name="_RegisterForm" model="@Model.AppUserViewModel" />
+                            </div>
+
+                        </div>
+                        <!-- rightside-content - end -->
+
+                    <a class="popup-modal-dismiss" href="#!">
+                            <i class="fas fa-times"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#alt-login-modal" class="login-modal-btn">
+                    Connexion
+                </a>
+                <div id="alt-login-modal" class="reglog-modal-wrapper mfp-hide clearfix" style="background-image: url(~/templates/assets/images/login-modal-bg.jpg);">
+                    <div class="overlay-black clearfix">
+
+                        <!-- leftside-content - start -->
+                    <div class="leftside-content">
+                            <div class="site-logo-wrapper mb-80">
+                                <a href="#!" class="logo">
+                                    <img src="~/templates/assets/images/logo sidebar.png" alt="logo_not_found" width="100">
+                                </a>
+                            </div>
+                            <div class="register-login-link mb-80">
+                                <ul>
+                                    <li class="active"><a href="#!">Connexion</a></li>
+                                    <li><a href="#!">Inscription</a></li>
+                                </ul>
+                            </div>
+                            <div class="copyright-text">
+                                <p class="m-0">©2021 <a href="#!" class="yellow-color">Snit Tresorerie</a> all right reserved, made with <i class="fas fa-heart"></i> by jThemes Studio </p>
+                            </div>
+                        </div>
+                        <!-- leftside-content - end -->
+                        <!-- rightside-content - start -->
+                        @{
+                            LoginRequest loginRequest = new();
+                        }
+                        <partial name="_LoginModal" for="@loginRequest" />
+
+                        <!-- rightside-content - end -->
+
+                    <a class="popup-modal-dismiss" href="#!">
+                            <i class="fas fa-times"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </li>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+               @if (@User.FindFirstValue(ClaimTypes.Role) == "Client")
+    {
+         <li id="nav-my-account">
+            <a asp-controller="Home" asp-action="MyCalendar">Mon Calendrier</a>
+        </li>
+        <li id="nav-my-account">
+            <a asp-controller="MyPayments" asp-action="Index">
+                Factures
+            </a>
+        </li>
+    }
+    else
+    {
+        @if (@User.FindFirstValue(ClaimTypes.Role) == "Organisateur")
+        {
+            <li id="nav-my-account">
+                <a asp-controller="MyAccount" asp-action="Index">Mon compte</a>
+            </li>
+        }
+
+        else
+        {
+            <li id="nav-my-account">
+                <a asp-controller="Dashboard" asp-action="Index">Mon compte</a>
+            </li>
+        }
+
+    }
+
+            <li>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <input type="submit" value="Déconnexion" class="ml-2" />
+                </form>
+            </li>
+        }
+
+    </ul>
+</div>
+@section Scripts{
+
+<script type="text/javascript">
+    $.ajax({
+        cache: false,
+        type: 'GET',
+        @*url: '/MyAccount/MyUniversities?ManagedByAppUserId=@User.FindFirstValue(ClaimTypes.NameIdentifier)'*@
+        url: '/Account/RegisterForm'
+        }).done(function (response) {
+            $('#register-form').html(response);
+        }).fail(function (error) {
+            console.log("error occured while loading Register" + error);
+        }).always(function () {
+
+        });
+
+</script>
+}

@@ -1,0 +1,152 @@
+﻿@model HomeViewModel
+
+<div class="col-lg-6">
+    <div class="register-login-group">
+        <ul>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+
+            }
+            else
+            {
+                <li>
+                    <a href="#register-modal" class="register-modal-btn">
+                        <i class="fas fa-user"></i>
+                        Inscription
+                    </a>
+                    <div id="register-modal" class="reglog-modal-wrapper register-modal mfp-hide clearfix" style="background-image: url(~/templates/assets/images/login-modal-bg.jpg);">
+                        <div class="overlay-black clearfix">
+
+                            <!-- leftside-content - start -->
+                        <div class="leftside-content">
+                                <div class="site-logo-wrapper mb-80">
+                                    <a href="#!" class="logo">
+                                        <img src="~/templates/assets/images/logo sidebar.png" alt="logo_not_found">
+                                    </a>
+                                </div>
+                                <div class="register-login-link mb-80">
+                                    <ul>
+                                        <li><a href="#!">Se connecter</a></li>
+                                        <li class="active"><a href="#!">Inscription</a></li>
+                                    </ul>
+                                </div>
+                                <div class="copyright-text">
+                                    <p class="m-0">©2021 <a href="#!" class="yellow-color">Snit Tresorerie</a></p>
+                                </div>
+                            </div>
+
+                            <div class="rightside-content text-center">
+
+                                <div class="mb-30">
+                                    @*<span class="form-subtitle white-color">Se connecter à notre site web, ou <strong>INSCRIVEZ-VOUS</strong></span>*@
+                                    <span class="form-subtitle white-color"><strong>INSCRIVEZ-VOUS</strong></span>
+                                </div>
+
+                                <div id="register-form" class="login-form text-center mb-50">
+
+                                    <partial name="_RegisterForm" model="@Model.AppUserViewModel" />
+                                </div>
+                            </div>
+
+                            <a class="popup-modal-dismiss" href="#!">
+                                <i class="fas fa-times"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#login-modal" class="login-modal-btn">
+                        <i class="fas fa-lock"></i>
+                        Connexion
+                    </a>
+                    <div id="login-modal" class="reglog-modal-wrapper mfp-hide clearfix" style="background-image: url(~/templates/assets/images/login-modal-bg.jpg);">
+                        <div class="overlay-black clearfix">
+
+                            <!-- leftside-content - start -->
+                        <div class="leftside-content">
+                                <div class="site-logo-wrapper mb-80">
+                                    <a href="#!" class="logo">
+                                        <img src="~/templates/assets/images/logo sidebar.png" alt="logo_not_found">
+                                    </a>
+                                </div>
+                                <div class="register-login-link mb-80">
+                                    <ul>
+                                        <li class="active"><a href="#!">Connexion</a></li>
+                                        <li><a href="#!">Inscription</a></li>
+                                    </ul>
+                                </div>
+                                <div class="copyright-text">
+                                    <p class="m-0">©2021 <a href="#!" class="yellow-color">Snit Tresorerie</a></p>
+                                </div>
+                            </div>
+
+
+                            @{
+                                LoginRequest loginRequest = new();
+                            }
+
+                            <partial name="_LoginModal" for="@loginRequest" />
+
+                            <a class="popup-modal-dismiss" href="#!">
+                                <i class="fas fa-times"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+            }
+
+
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a>
+                        <i class="fas fa-user"></i>
+                        @User.FindFirstValue(ClaimTypes.GivenName) @User.FindFirstValue(ClaimTypes.Surname)
+                    </a>
+
+                </li>
+                @if (@User.FindFirstValue(ClaimTypes.Role) == "Client")
+                {
+                    <li id="nav-my-account">
+                        <a asp-controller="Home" asp-action="MyCalendar">Mon Calendrier</a>
+                    </li>
+                    <li id="nav-my-account">
+                        <a asp-controller="MyPayments" asp-action="Index">
+                            Factures
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    @if (@User.FindFirstValue(ClaimTypes.Role) == "Organisateur")
+                    {
+                        <li id="nav-my-account">
+                            <a asp-controller="MyAccount" asp-action="Index">Mon compte</a>
+                        </li>
+                    }
+
+                    else
+                    {
+                        <li id="nav-my-account">
+                            <a asp-controller="Dashboard" asp-action="Index">Mon compte</a>
+                        </li>
+                    }
+
+                }
+
+                <li>
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Déconnexion" class="ml-2" />
+                    </form>
+                </li>
+            }
+
+
+        </ul>
+    </div>
+</div>

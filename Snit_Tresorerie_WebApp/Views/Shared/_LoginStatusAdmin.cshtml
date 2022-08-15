@@ -1,0 +1,31 @@
+﻿<!-- Right navbar links -->
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            @if (User.FindFirstValue(ClaimTypes.Gender) == "Féminin")
+            {
+                <img src="~/img/user-female-clipart.png" class="user-image img-circle elevation-2" alt="User Image">
+            }
+            else
+            {
+                <img src="~/img/user-male-clipart.png" class="user-image img-circle elevation-2" alt="User Image">
+            }
+
+            @if (!string.IsNullOrWhiteSpace(User.FindFirstValue(ClaimTypes.Uri)))
+            {
+                <img src="@User.FindFirstValue(ClaimTypes.Uri)" asp-append-version="true" class="user-image img-circle elevation-2" alt="User Image">
+            }
+            <span class="d-none d-md-inline">@User.FindFirstValue(ClaimTypes.GivenName) @User.FindFirstValue(ClaimTypes.Surname)</span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <li class="user-footer">
+                <form method="post" asp-controller="Account" asp-action="Logout" class=" d-inline">
+                    <input type="submit" value="Déconnection" class="ml-2 btn btn-default btn-flat" />
+                </form>
+
+                <a  asp-controller="AppUsers" asp-action="Form" class="btn btn-default btn-flat">Mon profil</a>
+            </li>
+        </ul>
+    </li>
+</ul>
