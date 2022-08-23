@@ -1,7 +1,4 @@
-﻿@model IEnumerable<TransactionResponse>
-
-@{ ViewBag.Title = "Evènement";
-    Layout = "_LayoutAdmin"; }
+﻿@model PagedResponse<IEnumerable<TransactionResponse>>
 
 <!-- Main content -->
 <section class="content">
@@ -16,7 +13,7 @@
                             </div>
                            
                             <div class="col-1">
-                                <a onclick="showInPopup('@Url.Action("Form","MyTransactions",null,Context.Request.Scheme)','New Transaction')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+                                <a onclick="showInPopup('@Url.Action("Form","Transactions",null,Context.Request.Scheme)','New Transaction')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +36,7 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $("#navMyTransactions").attr("class", "nav-link active");
+            $("#navTransactions").attr("class", "nav-link active");
         });
     </script>
 }

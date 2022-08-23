@@ -12,6 +12,7 @@ namespace Contracts
         IAccountRepository Account { get; }
         IActorRepository Actor { get; }
         IAppUserRepository AppUser { get; }
+        IPaymentTypeRepository PaymentType { get; }
         IRoleRepository Role { get; }
         ISiteRepository Site { get; }
         ITransactionRepository Transaction { get; }

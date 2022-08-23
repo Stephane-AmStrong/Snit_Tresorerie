@@ -2,6 +2,7 @@ using NLog;
 using Entities.Mappings;
 using Snit_Tresorerie_WebApp.Extensions;
 using Entities.Seeds;
+using Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 IWebHostEnvironment environment = builder.Environment;
@@ -29,8 +30,16 @@ var app = builder.Build();
 
 try
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILoggerManager>();
 
-    await app.SeedDefaultRolesAsync();
+        logger.LogInfo("Starting Seeding Default Roles");
+        await app.SeedDefaultRolesAsync();
+        logger.LogInfo("Roles Seeding Complete");
+    }
+
+
 
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
@@ -63,11 +72,11 @@ try
 }
 catch (Exception e)
 {
-    //Log.Fatal(e, "Host terminated unexpectedly");
+    using (var scope = app.Services.CreateScope())
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILoggerManager>();
+        logger.LogError($"{e} \nHost terminated unexpectedly");
+    }
 
     return 1;
-}
-finally
-{
-    //Log.CloseAndFlush();
 }

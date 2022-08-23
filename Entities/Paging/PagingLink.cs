@@ -1,4 +1,4 @@
-﻿namespace Entities.ViewModels
+﻿namespace Entities.Paging
 {
     public class PagingLink
     {

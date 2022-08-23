@@ -77,6 +77,7 @@ namespace Snit_Tresorerie_WebApp.Extensions
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ISortHelper<Actor>, SortHelper<Actor>>();
             services.AddScoped<ISortHelper<AppUser>, SortHelper<AppUser>>();
+            services.AddScoped<ISortHelper<PaymentType>, SortHelper<PaymentType>>();
             services.AddScoped<ISortHelper<Site>, SortHelper<Site>>();
             services.AddScoped<ISortHelper<Transaction>, SortHelper<Transaction>>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();

@@ -20,5 +20,11 @@ namespace Entities.DataTransfertObjects
         public string Headquarters { get; set; }
 
         public virtual TransactionResponse[] Transactions { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{Name} {Country} {Headquarters}";
+        }
     }
 }

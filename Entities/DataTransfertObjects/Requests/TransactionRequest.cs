@@ -16,6 +16,8 @@ namespace Entities.DataTransfertObjects
     public class TransactionRequest
     {
         public Guid? Id { get; set; }
+        [Required, Display(Name = "Libellé")]
+        public string Name { get; set; }
 
         [Required, BindProperty, DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.Now;
@@ -23,11 +25,8 @@ namespace Entities.DataTransfertObjects
         [Required, Display(Name = "Réference")]
         public string Reference { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Type : Achat ou vente")]
         public string Type { get; set; }
-
-        [Required]
-        public string Nature { get; set; }
 
         [Required, Display(Name = "Montant hors taxes")]
         public int AmountBeforeTax { get; set; }
@@ -38,11 +37,13 @@ namespace Entities.DataTransfertObjects
         [Required, Display(Name = "TTC")]
         public int ATI { get; set; }
 
-        [Required, Display(Name = "Mode de paiement")]
-        public string ModeOfPayment { get; set; }
+        [Required, Display(Name = "Choisissez le mode de paiement")]
+        public Guid PaymentTypeId { get; set; }
 
+        [Required, Display(Name = "Choisissez l'acteur")]
         public Guid ActorId { get; set; }
         public string AppUserId { get; set; }
+        [Required, Display(Name = "Choisissez le site")]
         public Guid SiteId { get; set; }
 
     }

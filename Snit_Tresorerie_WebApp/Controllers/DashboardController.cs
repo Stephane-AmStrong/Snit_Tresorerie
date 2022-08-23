@@ -24,9 +24,6 @@ namespace Snit_Tresorerie_WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var userCount = await _repository.Account.CountUsersAsync();
-            if (userCount < 1) return RedirectToAction("RegisterAdmin", "Account");
-
             var statistics = new Dictionary<string, int>
                 {
                     { "totalActors", 0 },

@@ -15,7 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using static Snit_Tresorerie_WebApp.Helpers.RazorViewHelper;
-using Snit_Tresorerie_WebApp.Wrapper;
+using Entities.Paging;
 
 namespace Snit_Tresorerie_WebApp.Controllers
 {

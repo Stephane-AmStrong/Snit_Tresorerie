@@ -33,8 +33,11 @@ namespace Snit_Tresorerie_WebApp.Controllers
 
 
         [AllowAnonymous]
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
+            var userCount = await _repository.Account.CountUsersAsync();
+            if (userCount < 1) return RedirectToAction("RegisterAdmin", "Account"); 
+            
             return View();
         }
 
@@ -49,7 +52,6 @@ namespace Snit_Tresorerie_WebApp.Controllers
                 ModelState.AddModelError("", "create an adminUser account first");
                 return View(ModelState);
             }
-            var roleParameters = new RoleParameters();
 
             var roles = new List<IdentityRole>();
 
@@ -422,7 +424,7 @@ namespace Snit_Tresorerie_WebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await _repository.Account.LogOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
 
 

@@ -1,9 +1,11 @@
 ﻿using Entities.RequestFeatures;
-using Entities.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace Snit_Tresorerie_WebApp.Wrapper
+namespace Entities.Paging
 {
     public class PagedResponse<T>
     {
@@ -19,7 +21,7 @@ namespace Snit_Tresorerie_WebApp.Wrapper
             MetaData = metaData;
             Spread = spread;
 
-            Links.Add(new PagingLink(MetaData.CurrentPage - 1, MetaData.HasPrevious, "«"));
+            Links.Add(new PagingLink(MetaData.CurrentPage - 1, MetaData.HasPrevious, "Préc"));
 
             for (int i = 1; i <= MetaData.TotalPages; i++)
             {
@@ -29,7 +31,7 @@ namespace Snit_Tresorerie_WebApp.Wrapper
                 }
             }
 
-            Links.Add(new PagingLink(MetaData.CurrentPage + 1, MetaData.HasNext, "»"));
+            Links.Add(new PagingLink(MetaData.CurrentPage + 1, MetaData.HasNext, "Suiv"));
         }
     }
 }

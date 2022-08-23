@@ -17,6 +17,7 @@ namespace Entities
 
         public DbSet<Actor> Actors { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Site> Sites { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 

@@ -18,5 +18,11 @@ namespace Entities.DataTransfertObjects
 
         [Required]
         public string Type { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }

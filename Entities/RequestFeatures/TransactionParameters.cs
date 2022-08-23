@@ -9,9 +9,10 @@ namespace Entities.RequestFeatures
     {
         public TransactionParameters()
         {
-            OrderBy = "nature";
+            OrderBy = "name";
         }
 
+        public string WithName { get; set; }
         public string OrganizedBy { get; set; }
         public Guid? OfCategoryId { get; set; }
         public Guid? OnTheBillId { get; set; }

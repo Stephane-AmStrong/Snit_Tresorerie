@@ -127,6 +127,24 @@ namespace Entities.Migrations
                     b.ToTable("User", (string)null);
                 });
 
+            modelBuilder.Entity("Entities.Models.PaymentType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentTypes");
+                });
+
             modelBuilder.Entity("Entities.Models.Site", b =>
                 {
                     b.Property<Guid>("Id")
@@ -172,11 +190,11 @@ namespace Entities.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("ModeOfPayment")
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Nature")
-                        .HasColumnType("text");
+                    b.Property<Guid>("PaymentTypeId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Reference")
                         .HasColumnType("text");
@@ -195,6 +213,8 @@ namespace Entities.Migrations
                     b.HasIndex("ActorId");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("PaymentTypeId");
 
                     b.HasIndex("SiteId");
 
@@ -345,6 +365,12 @@ namespace Entities.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("AppUserId");
 
+                    b.HasOne("Entities.Models.PaymentType", "PaymentType")
+                        .WithMany("Transactions")
+                        .HasForeignKey("PaymentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Entities.Models.Site", "Site")
                         .WithMany("Transactions")
                         .HasForeignKey("SiteId")
@@ -354,6 +380,8 @@ namespace Entities.Migrations
                     b.Navigation("Actor");
 
                     b.Navigation("AppUser");
+
+                    b.Navigation("PaymentType");
 
                     b.Navigation("Site");
                 });
@@ -415,6 +443,11 @@ namespace Entities.Migrations
                 });
 
             modelBuilder.Entity("Entities.Models.AppUser", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("Entities.Models.PaymentType", b =>
                 {
                     b.Navigation("Transactions");
                 });

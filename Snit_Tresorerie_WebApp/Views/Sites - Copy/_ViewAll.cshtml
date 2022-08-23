@@ -1,0 +1,92 @@
+﻿@model PagedResponse<IEnumerable<TransactionResponse>>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().Reference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().AmountBeforeTax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().VAT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().ATI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().ActorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().PaymentTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.First().SiteId)
+            </th>
+
+            <th>
+                <a onclick="showInPopup('@Url.Action("Form","Transactions",null,Context.Request.Scheme)','New Transaction')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="example2body" class="table-hover">
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountBeforeTax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VAT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ATI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Actor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Site)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-info" asp-controller="Transactions" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="fas fa-info-circle" title="Details"></i>
+                    </a>
+                    <a onclick="showInPopup('@Url.Action("Form","Transactions",new {id=item.Id},Context.Request.Scheme)','Update Transaction')" class="btn btn-sm btn-outline-success">
+                        <i class="fas fa-pencil-alt" title="Edit"></i>
+                    </a>
+                    <a onclick="showInPopup('@Url.Action("Delete","Transactions",new {id=item.Id},Context.Request.Scheme)','Delete Transaction')" class="btn btn-sm btn-outline-danger">
+                        <i class="fas fa-trash" title="Delete"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

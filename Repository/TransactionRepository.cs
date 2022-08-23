@@ -67,13 +67,13 @@ namespace Repository
 
         public async Task<bool> ExistAsync(Transaction transaction)
         {
-            return await BaseFindByCondition(x => x.Reference == transaction.Reference && 
+            return await BaseFindByCondition(x => x.Name == transaction.Name &&
+                x.Reference == transaction.Reference &&
                 x.Type == transaction.Type && 
-                x.Nature == transaction.Nature && 
                 x.AmountBeforeTax == transaction.AmountBeforeTax && 
                 x.VAT == transaction.VAT && 
                 x.ATI == transaction.ATI && 
-                x.ModeOfPayment == transaction.ModeOfPayment)
+                x.PaymentTypeId == transaction.PaymentTypeId)
                 .AnyAsync();
         }
 

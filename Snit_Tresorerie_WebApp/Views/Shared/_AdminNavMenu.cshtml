@@ -7,53 +7,54 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-    @if (@User.FindFirstValue(ClaimTypes.Role) != "Organisateur")
-    {
+    <a asp-controller="Dashboard" asp-action="Index" class="brand-link">
+        <img src="~/templates/assets/images/logo sidebar.png" width="120" alt="Logo" class="event-image img-rounded elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">@User.FindFirstValue(ClaimTypes.Role)</span>
+    </a>
 
-        <a asp-controller="Dashboard" asp-action="Index" class="brand-link">
-            <img src="~/templates/assets/images/logo sidebar.png" width="120" alt="Logo" class="event-image img-rounded elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">@User.FindFirstValue(ClaimTypes.Role)</span>
-        </a>
-    }
-    else
-    {
-        <a asp-controller="MyAccount" asp-action="Index" class="brand-link">
-            <img src="~/templates/assets/images/logo sidebar.png" width="120" alt="Logo" class="event-image img-rounded elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">@User.FindFirstValue(ClaimTypes.Role)</span>
-        </a>
-    }
     <!-- Brand Logo -->
     <!-- Sidebar -->
     <div class="sidebar">
 
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ol class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a asp-controller="Home" asp-action="Index" class="nav-link">
+                    <a asp-controller="Dashboard" asp-action="Index" class="nav-link">
                         <i class="nav-icon fas fa-home"></i> <p>Accueil Snit Tresorerie</p>
                     </a>
                 </li>
 
-                @if (@User.FindFirstValue(ClaimTypes.Role) != "Organisateur")
-                {
+                <li class="nav-item">
+                    <a asp-controller="Dashboard" asp-action="Index" class="nav-link" id="navDashboard">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a asp-controller="Dashboard" asp-action="Index" class="nav-link" id="navDashboard">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                }
-                else
+
+                @if ((await AuthorizationService.AuthorizeAsync(User, "actor.manage.policy")).Succeeded)
                 {
-                    
                     <li class="nav-item">
-                        <a asp-controller="MyAccount" asp-action="Index" class="nav-link" id="navDashboard">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tasks"></i>
+                            <p>
+                                Acteurs <i class="fas fa-angle-left right"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="SubCategories" asp-action="Index" class="nav-link" id="navSubCategories">
+                                    <i class="far fa-circle nav-icon"></i> <p>Clients</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Commercials" asp-action="Index" class="nav-link" id="navCommercials">
+                                    <i class="far fa-circle nav-icon"></i> <p>Fournisseurs</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 }
 
@@ -66,61 +67,44 @@
                     </li>
                 }
 
-                @if ((await AuthorizationService.AuthorizeAsync(User, "site.read.policy")).Succeeded)
+                @if ((await AuthorizationService.AuthorizeAsync(User, "paymentType.read.policy")).Succeeded)
                 {
                     <li class="nav-item">
-                        <a asp-controller="Sites" asp-action="Index" class="nav-link" id="navBanners">
-                            <i class="nav-icon fas fa-image"></i> <p>Sites</p>
-                        </a>
-                    </li>
-                }
-                
-                @if ((await AuthorizationService.AuthorizeAsync(User, "transaction.read.policy")).Succeeded)
-                {
-                    <li class="nav-item">
-                        <a asp-controller="Categories" asp-action="Index" class="nav-link" id="navCategories">
-                            <i class="nav-icon fas fa-table"></i> <p>Catégories</p>
+                        <a asp-controller="PaymentTypes" asp-action="Index" class="nav-link" id="navPaymentTypes">
+                            <i class="nav-icon fas fa-image"></i> <p>Types de Payment</p>
                         </a>
                     </li>
                 }
 
-                @*
-                @if ((await AuthorizationService.AuthorizeAsync(User, "manageSubCategoryPolicy")).Succeeded)
+                @if ((await AuthorizationService.AuthorizeAsync(User, "site.read.policy")).Succeeded)
                 {
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tasks"></i>
-                            <p>
-                                Bon Plans
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
+                        <a asp-controller="Sites" asp-action="Index" class="nav-link" id="navSites">
+                            <i class="nav-icon fas fa-image"></i> <p>Sites</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a asp-controller="SubCategories" asp-action="Index" class="nav-link" id="navSubCategories">
-                                    <i class="far fa-circle nav-icon"></i> <p>Sous-Categorie</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Commercials" asp-action="Index" class="nav-link" id="navCommercials">
-                                    <i class="far fa-circle nav-icon"></i> <p>Publication Bon Plans</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 }
-                *@
+
+                @if ((await AuthorizationService.AuthorizeAsync(User, "transaction.read.policy")).Succeeded)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Transactions" asp-action="Index" class="nav-link" id="navTransactions">
+                            <i class="nav-icon fas fa-table"></i> <p>Transactions</p>
+                        </a>
+                    </li>
+                }
+
 
                 @if ((await AuthorizationService.AuthorizeAsync(User, "role.manage.policy")).Succeeded)
                 {
                     <li class="nav-item">
                         <a asp-controller="Workstations" asp-action="Index" class="nav-link" id="navWorkstations">
-                            <i class="nav-icon fas fa-warehouse"></i> <p>Workstations</p>
+                            <i class="nav-icon fas fa-warehouse"></i> <p>Roles</p>
                         </a>
                     </li>
                 }
 
-            </ul>
+            </ol>
         </nav>
         <!-- /.sidebar-menu -->
         <!-- /.sidebar-menu -->

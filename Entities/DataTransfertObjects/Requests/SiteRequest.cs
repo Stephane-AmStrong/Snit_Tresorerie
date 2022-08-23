@@ -25,7 +25,5 @@ namespace Entities.DataTransfertObjects
 
         public string AppUserId { get; set; }
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
-
     }
 }

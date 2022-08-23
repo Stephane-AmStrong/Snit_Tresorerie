@@ -1,0 +1,5 @@
+﻿@model float?
+@if (Model.HasValue)
+{
+    @string.Format("{0:#,0}", Model.Value)
+}

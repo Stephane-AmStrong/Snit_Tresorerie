@@ -18,5 +18,11 @@ namespace Entities.DataTransfertObjects
 
         [Required, Display(Name = "Quartier général")]
         public string Headquarters { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{Name} {Country} {Headquarters}";
+        }
     }
 }

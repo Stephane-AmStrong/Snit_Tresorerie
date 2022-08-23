@@ -34,6 +34,9 @@ namespace Entities.Mappings
             CreateMap<Actor, ActorResponse>().ReverseMap();
             CreateMap<ActorRequest, Actor>().ReverseMap();
 
+            CreateMap<PaymentType, PaymentTypeResponse>().ReverseMap();
+            CreateMap<PaymentTypeRequest, PaymentType>().ReverseMap();
+
             CreateMap<Site, SiteResponse>().ReverseMap();
             CreateMap<SiteRequest, Site>().ReverseMap();
 

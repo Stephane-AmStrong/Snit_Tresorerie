@@ -22,6 +22,7 @@ namespace Repository
         private IAccountRepository _authenticationRepository;
         private IActorRepository _actorRepository;
         private IAppUserRepository _appUser;
+        private IPaymentTypeRepository _paymentTypeRepository;
         private ISiteRepository _siteRepository;
         private ITransactionRepository _transactionRepository;
         //private IDinkToPdfRepository _dinkToPdfRepository;
@@ -34,10 +35,11 @@ namespace Repository
         //private readonly IConverter _converter;
         private readonly IConfiguration _configuration;
         private IHttpContextAccessor _httpContextAccessor;
-        private IOptions<EmailSettings> _emailSettings;
+        //private IOptions<EmailSettings> _emailSettings;
 
         private readonly ISortHelper<AppUser> _appUserSortHelper;
         private readonly ISortHelper<Actor> _actorSortHelper;
+        private readonly ISortHelper<PaymentType> _paymentTypeSortHelper;
         private readonly ISortHelper<Site> _siteSortHelper;
         private readonly ISortHelper<Transaction> _transactionSortHelper;
         private readonly ISortHelper<IdentityRole> _roleSortHelper;
@@ -85,6 +87,18 @@ namespace Repository
                     _actorRepository = new ActorRepository(_repoContext, _actorSortHelper);
                 }
                 return _actorRepository;
+            }
+        }
+
+        public IPaymentTypeRepository PaymentType
+        {
+            get
+            {
+                if (_paymentTypeRepository == null)
+                {
+                    _paymentTypeRepository = new PaymentTypeRepository(_repoContext, _paymentTypeSortHelper);
+                }
+                return _paymentTypeRepository;
             }
         }
 
@@ -189,6 +203,7 @@ namespace Repository
             //IConverter converter,
             ISortHelper<AppUser> appUserSortHelper,
             ISortHelper<Actor> actorSortHelper,
+            ISortHelper<PaymentType> paymentTypeSortHelper,
             ISortHelper<Site> siteSortHelper,
             ISortHelper<IdentityRole> roleSortHelper,
             ISortHelper<Transaction> transactionSortHelper,
@@ -203,6 +218,7 @@ namespace Repository
 
             _appUserSortHelper = appUserSortHelper;
             _actorSortHelper = actorSortHelper;
+            _paymentTypeSortHelper = paymentTypeSortHelper;
             _siteSortHelper = siteSortHelper;
             _roleSortHelper = roleSortHelper;
             _transactionSortHelper = transactionSortHelper;

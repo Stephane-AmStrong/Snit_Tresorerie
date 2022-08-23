@@ -3,30 +3,35 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">@ViewBag.Title</h3>
-                <div class="card-tools">
-                    <ul class="pagination pagination-sm float-right">
-                        @foreach (var link in Model.Links)
-                        {
-                            var siteParameters = new Dictionary<string, string>
-                            {
-                                { "PageNumber", link.Text },
-                            };
-
-                            <li class="page-item @(link.Enabled ? null : "disabled") @(link.Active ? "active" : null)"><a class="page-link" asp-action="Index" asp-all-route-data="siteParameters">@link.Text</a></li>
-                        }
-                    </ul>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">@ViewBag.Title</h3>
+@*
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+*@
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" id="view-all">
+                        @await Html.PartialAsync("_ViewAll", Model)
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-
+                <!-- /.card -->
             </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0" id="view-all">
-                @await Html.PartialAsync("_ViewAll", Model)
-            </div>
-            <!-- /.card-body -->
+            <!-- /.col -->
         </div>
+        <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
 </section>

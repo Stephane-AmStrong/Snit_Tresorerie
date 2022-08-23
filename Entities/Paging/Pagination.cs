@@ -1,7 +1,7 @@
 ﻿using Entities.RequestFeatures;
 using System.Collections.Generic;
 
-namespace Entities.ViewModels
+namespace Entities.Paging
 {
     public class Pagination
     {

@@ -15,9 +15,9 @@ namespace Contracts
         Task<Transaction> GetDetailsAsync(Guid id);
         Task<bool> ExistAsync(Transaction transaction);
 
-        Task BaseCreateAsync(Transaction transaction);
-        Task BaseUpdateAsync(Transaction transaction);
-        Task BaseDeleteAsync(Transaction transaction);
+        Task CreateAsync(Transaction transaction);
+        Task UpdateAsync(Transaction transaction);
+        Task DeleteAsync(Transaction transaction);
         Task<int> CountAsync();
 
     }
