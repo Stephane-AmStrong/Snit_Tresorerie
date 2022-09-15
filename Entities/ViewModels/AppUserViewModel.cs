@@ -9,6 +9,7 @@ namespace Entities.ViewModels
 {
     public class AppUserViewModel : AppUserRequest
     {
-        public IFormFile File { get; set; }
+        //public IFormFile File { get; set; }
+        public virtual IFormFile? ImgFile { get; set; }
     }
 }

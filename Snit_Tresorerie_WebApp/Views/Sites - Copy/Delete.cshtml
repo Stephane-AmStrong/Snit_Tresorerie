@@ -1,8 +1,8 @@
-﻿@model TransactionResponse
+﻿@model OperationResponse
 
 @{ Layout = null; }
 
-<form enctype="multipart/form-data" method="post" asp-controller="Transactions" asp-action="DeleteTransaction" asp-route-id="@Model.Id"
+<form enctype="multipart/form-data" method="post" asp-controller="Operations" asp-action="DeleteOperation" asp-route-id="@Model.Id"
       data-ajax="true" data-ajax-method="POST"
       data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
       data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">

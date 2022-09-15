@@ -1,0 +1,85 @@
+﻿@model RoleResponse
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- /.col -->
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <h3 class="profile-username text-center">Snit Tresorerie, </h3>
+                        <p class="text-muted text-center">les différents accès</p>
+
+                        <form enctype="multipart/form-data" method="post" asp-controller="Roles" asp-action="SaveRoleClaims" asp-route-id="@Model.Id"
+                              data-ajax="true" data-ajax-method="POST"
+                              data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
+                              data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                @for (int i = 0; i < Model.Claims.Count; i++)
+                                {
+                                    <li class="list-group-item">
+                                        <input type="hidden" asp-for="Claims[i].Type">
+                                        <input type="hidden" asp-for="Claims[i].Value">
+                                        <label asp-for="Claims[i].Type">@Model.Claims[i].Value</label>
+                                        <input type="checkbox" asp-for="Claims[i].IsSelected" class="float-right">
+                                    </li>
+                                }
+                            </ul>
+
+                            <input type="submit" value="Enregistrer" class="btn btn-primary btn-block" />
+                        </form>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-9">
+
+                <!-- About Me Box -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Utilisateurs jouant ce role</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        @for (int i = 0; i < Model.AppUsers.Count(); i++)
+                        {
+                            <strong><i class="fas fa-user mr-1"></i> @Model.AppUsers[i].FirstName</strong>
+
+                            <span class="text-muted">
+                                @Model.AppUsers[i].LastName
+                            </span>
+
+                            if (i < Model.AppUsers.Count()-1)
+                            {
+                                <hr>
+                            }
+                        }
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#navRoles").attr("class", "nav-link active");
+        });
+    </script>
+}

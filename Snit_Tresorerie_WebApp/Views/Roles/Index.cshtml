@@ -1,0 +1,11 @@
+﻿@model IEnumerable<RoleResponse>
+
+@await Html.PartialAsync("_ViewAll", Model)
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#navRoles").attr("class", "nav-link active");
+        });
+    </script>
+}

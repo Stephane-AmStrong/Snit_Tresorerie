@@ -13,9 +13,10 @@ namespace Entities.DataTransfertObjects
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
+        [Required, Display(Name ="Mot de passe")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required, Display(Name ="Se rappeler de moi")]
         public bool RememberMe { get; set; } = false;
     }
 }

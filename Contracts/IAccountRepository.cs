@@ -16,6 +16,7 @@ namespace Contracts
         Task<Authentication> LogInAsync(LoginModel loginRequest, string password);
         Task LogOutAsync();
         Task<Authentication> RegisterUserAsync(AppUser appUser, string password);
+        Task<Authentication> UpdateUserAsync(AppUser appUser);
         Task<Authentication> ConfirmEmailAsync(string userId, string token);
         Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser);
         Task<string> EncodeTokenAsync(string token);

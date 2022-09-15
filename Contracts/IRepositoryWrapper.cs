@@ -10,15 +10,15 @@ namespace Contracts
         IFileRepository File { get; }
 
         IAccountRepository Account { get; }
-        IActorRepository Actor { get; }
+        IIntervenorRepository Intervenor { get; }
         IAppUserRepository AppUser { get; }
-        IPaymentTypeRepository PaymentType { get; }
+        IPaymentOptionRepository PaymentOption { get; }
         IRoleRepository Role { get; }
         ISiteRepository Site { get; }
-        ITransactionRepository Transaction { get; }
+        IOperationRepository Operation { get; }
+        IOperationTypeRepository OperationType { get; }
 
         //IDinkToPdfRepository PdfService { get; }
-        IQrCodeRepository QrCode { get; }
         IEmailSenderRepository EmailSender { get; }
         string Path { set; }
 

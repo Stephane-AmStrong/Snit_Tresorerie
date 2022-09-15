@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 });
 
-$('#File').change(function (evt) {
+$('#ImgFile').change(function (evt) {
     showimages(evt.target.files);
 });
 

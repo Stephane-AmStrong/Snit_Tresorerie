@@ -1,0 +1,89 @@
+﻿@model PagedResponse<IEnumerable<PaymentOptionResponse>>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Description)
+                    </th>
+                    <th style="text-align:right">
+                        <a onclick="showInPopup('@Url.Action("Form","PaymentOptions",null,Context.Request.Scheme)','Création d PaymentOption')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="example2body" class="table-hover">
+                @foreach (var item in Model.Data)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td style="text-align:right">
+                            <a class="btn btn-sm btn-outline-info" asp-controller="PaymentOptions" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="fas fa-info-circle" title="Details"></i>
+                            </a>
+                            <a onclick="showInPopup('@Url.Action("Form","PaymentOptions",new {id=item.Id},Context.Request.Scheme)','Mise à jour d PaymentOption')" class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-pencil-alt" title="Edit"></i>
+                            </a>
+                            <a onclick="showInPopup('@Url.Action("Delete","PaymentOptions",new {id=item.Id},Context.Request.Scheme)','Suppression d PaymentOption')" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash" title="Delete"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" id="example2_info" role="status">
+            @*Affichage de 1 à 10 sur 57 entrées *@
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination float-right">
+
+                @foreach (var link in Model.Links)
+                {
+                    var paymentOptionParameters = new Dictionary<string, string>
+                    {
+                        { "PageNumber", link.Text },
+                    };
+
+                    <li class="paginate_button page-item @(link.Enabled ? null : "disabled") @(link.Active ? "active" : null)">
+                        <a class="page-link" asp-action="Index" asp-all-route-data="paymentOptionParameters">@link.Text</a>
+                    </li>
+                }
+@*
+                <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                <li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

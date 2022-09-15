@@ -257,10 +257,8 @@ namespace Snit_Tresorerie_WebApp.Controllers
 
                     _logger.LogInfo($"Registration was successful");
 
-                    //email verification should be enable later
                     await SendVerificationEmail(userResponse.Id);
                     return RedirectToAction("SuccessRegistration", "Account");
-                    //return RedirectToAction("Login", "Account");
                 }
                 else
                 {

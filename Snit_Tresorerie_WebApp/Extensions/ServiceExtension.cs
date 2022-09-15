@@ -75,11 +75,12 @@ namespace Snit_Tresorerie_WebApp.Extensions
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<ISortHelper<Actor>, SortHelper<Actor>>();
+            services.AddScoped<ISortHelper<Intervenor>, SortHelper<Intervenor>>();
             services.AddScoped<ISortHelper<AppUser>, SortHelper<AppUser>>();
-            services.AddScoped<ISortHelper<PaymentType>, SortHelper<PaymentType>>();
+            services.AddScoped<ISortHelper<PaymentOption>, SortHelper<PaymentOption>>();
             services.AddScoped<ISortHelper<Site>, SortHelper<Site>>();
-            services.AddScoped<ISortHelper<Transaction>, SortHelper<Transaction>>();
+            services.AddScoped<ISortHelper<Operation>, SortHelper<Operation>>();
+            services.AddScoped<ISortHelper<OperationType>, SortHelper<OperationType>>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddScoped<ISortHelper<IdentityRole>, SortHelper<IdentityRole>>();
         }

@@ -26,23 +26,23 @@ namespace Snit_Tresorerie_WebApp.Controllers
         {
             var statistics = new Dictionary<string, int>
                 {
-                    { "totalActors", 0 },
+                    { "totalIntervenors", 0 },
                     { "totalAppUsers", 0},
                     { "totalSites", 0},
-                    { "totalTransactions", 0},
+                    { "totalOperations", 0},
                 };
 
 
 
-            var actorParameters = new ActorParameters();
-            var actors = await _repository.Actor.GetPagedListAsync(actorParameters);
-            var totalActors = actors.Count;
+            var intervenorParameters = new IntervenorParameters();
+            var intervenors = await _repository.Intervenor.GetPagedListAsync(intervenorParameters);
+            var totalIntervenors = intervenors.Count;
 
-            while (actors.MetaData.HasNext)
+            while (intervenors.MetaData.HasNext)
             {
-                actorParameters.PageNumber++;
-                actors = await _repository.Actor.GetPagedListAsync(actorParameters);
-                totalActors += actors.Count;
+                intervenorParameters.PageNumber++;
+                intervenors = await _repository.Intervenor.GetPagedListAsync(intervenorParameters);
+                totalIntervenors += intervenors.Count;
             }
 
 
@@ -70,24 +70,25 @@ namespace Snit_Tresorerie_WebApp.Controllers
             }
 
 
-            var transactionParameters = new TransactionParameters();
-            var transactions = await _repository.Transaction.GetPagedListAsync(transactionParameters);
-            var totalTransactions = transactions.Count;
+            var operationParameters = new OperationParameters();
+            var operations = await _repository.Operation.GetPagedListAsync(operationParameters);
+            var totalOperations = operations.Count;
 
-            while (transactions.MetaData.HasNext)
+            while (operations.MetaData.HasNext)
             {
-                transactionParameters.PageNumber++;
-                transactions = await _repository.Transaction.GetPagedListAsync(transactionParameters);
-                totalTransactions += transactions.Count;
+                operationParameters.PageNumber++;
+                operations = await _repository.Operation.GetPagedListAsync(operationParameters);
+                totalOperations += operations.Count;
             }
 
 
 
-            statistics["totalActors"] = totalActors;
+            statistics["totalIntervenors"] = totalIntervenors;
             statistics["totalAppUsers"] = totalAppUsers;
             statistics["totalSites"] = totalSites;
-            statistics["totalTransactions"] = totalTransactions;
+            statistics["totalOperations"] = totalOperations;
 
+            ViewBag.Title = "Tableau de bord";
             return View(statistics);
         }
 

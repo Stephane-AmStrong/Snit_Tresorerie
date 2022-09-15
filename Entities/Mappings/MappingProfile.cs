@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Entities.Mappings
@@ -31,18 +32,24 @@ namespace Entities.Mappings
             CreateMap<LoginRequest, LoginModel>();
             CreateMap<Authentication, AuthenticationResponse>();
 
-            CreateMap<Actor, ActorResponse>().ReverseMap();
-            CreateMap<ActorRequest, Actor>().ReverseMap();
+            CreateMap<Claim, ClaimResponse>().ReverseMap();
+            CreateMap<Claim, ClaimViewModel>().ReverseMap();
+            CreateMap<ClaimViewModel, ClaimResponse>().ReverseMap();
 
-            CreateMap<PaymentType, PaymentTypeResponse>().ReverseMap();
-            CreateMap<PaymentTypeRequest, PaymentType>().ReverseMap();
+            CreateMap<Intervenor, IntervenorResponse>().ReverseMap();
+            CreateMap<IntervenorRequest, Intervenor>().ReverseMap();
+
+            CreateMap<PaymentOption, PaymentOptionResponse>().ReverseMap();
+            CreateMap<PaymentOptionRequest, PaymentOption>().ReverseMap();
 
             CreateMap<Site, SiteResponse>().ReverseMap();
             CreateMap<SiteRequest, Site>().ReverseMap();
 
-            CreateMap<Transaction, TransactionResponse>().ReverseMap();
-            CreateMap<TransactionRequest, Transaction>().ReverseMap();
+            CreateMap<Operation, OperationResponse>().ReverseMap();
+            CreateMap<OperationRequest, Operation>().ReverseMap();
 
+            CreateMap<OperationType, OperationTypeResponse>().ReverseMap();
+            CreateMap<OperationTypeRequest, OperationType>().ReverseMap();
 
             CreateMap<IdentityRole, RoleResponse>().ReverseMap();
             CreateMap<RoleRequest, IdentityRole>().ReverseMap();

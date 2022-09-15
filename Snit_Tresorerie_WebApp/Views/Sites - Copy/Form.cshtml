@@ -1,6 +1,6 @@
-﻿@model TransactionRequest
+﻿@model OperationRequest
 
-<form enctype="multipart/form-data" method="post" asp-controller="Transactions" asp-action="SaveTransaction" asp-route-id="@Model.Id"
+<form enctype="multipart/form-data" method="post" asp-controller="Operations" asp-action="SaveOperation" asp-route-id="@Model.Id"
       data-ajax="true" data-ajax-method="POST"
       data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
       data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">
@@ -23,9 +23,9 @@
         
 
         <div class="form-group">
-            <label asp-for="Headquarters" class="control-label"></label>
-            <input asp-for="Headquarters" class="form-control" />
-            <span asp-validation-for="Headquarters" class="text-danger"></span>
+            <label asp-for="Citys" class="control-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
         </div>
 *@
     </div>

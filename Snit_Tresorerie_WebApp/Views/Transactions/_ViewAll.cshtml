@@ -1,9 +1,0 @@
-﻿@model PagedResponse<IEnumerable<TransactionResponse>>
-
-<div class="row">
-
-    @foreach (var transaction in Model.Data)
-    {
-        <partial name="TransactionCard" for="@transaction"/>
-    }
-</div>

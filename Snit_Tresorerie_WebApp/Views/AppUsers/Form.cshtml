@@ -1,0 +1,68 @@
+﻿@model AppUserViewModel
+@{
+    //Model.Password = "A la connexion que l'utilisateur passe par la procedure du mot de passe oublié";
+
+    var password = Guid.NewGuid().ToString();
+
+}
+
+<form enctype="multipart/form-data" method="post" asp-controller="AppUsers" asp-action="SaveAppUser" asp-route-id="@Model.Id"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
+      data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Id" type="hidden"class="form-control" />
+        <input asp-for="Password" value ="123Pa$$word!" type="hidden"class="form-control" />
+        <input asp-for="ConfirmPassword" value ="123Pa$$word!" type="hidden"class="form-control" />
+
+        <div class="form-group">
+            <label asp-for="ImgFile" class="control-label"></label>
+            <div class="col">
+                <input asp-for="ImgFile" class="form-control custom-file-input" id="file" accept="image/*" />
+                <label class="custom-file-label">chose file</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SiteId" class="control-label"></label>
+            <select asp-for="SiteId" class="form-control" asp-items ="ViewBag.SiteId"></select>
+            <span asp-validation-for="SiteId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+@*
+        <div class="form-group mb-0">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" value ="sdsd" class="form-control" readonly/>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+*@
+        <div class="form-group">
+            <label asp-for="RoleId" class="control-label"></label>
+            <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+        </div>
+    </div>
+
+    <div class="modal-footer justify-content-between">
+        <input type="submit" value="Enregistrer les modifications" class="btn btn-primary btn-block" />
+    </div>
+</form>
+
+<script src="~/js/modals.js"></script>

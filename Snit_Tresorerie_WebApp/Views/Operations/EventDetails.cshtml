@@ -1,0 +1,211 @@
+﻿@model OperationResponse
+
+		<!-- breadcrumb-section - start
+		================================================== -->
+		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
+			<div class="jarallax" style="background-image: url(/templates/assets/images/breadcrumb/operationb.jpg);">
+				<div class="overlay-black">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-6 col-md-12 col-sm-12">
+
+								<!-- breadcrumb-title - start -->
+								<div class="breadcrumb-title text-center mb-50">
+									<span class="sub-title">operation single</span>
+									<h2 class="big-title">Unlimited Operation <strong>operation details</strong></h2>
+								</div>
+								<!-- breadcrumb-title - end -->
+
+								<!-- breadcrumb-list - start -->
+								<div class="breadcrumb-list">
+									<ul>
+										<li class="breadcrumb-item"><a href="/Home/Index" class="breadcrumb-link">Home</a></li>
+										<li class="breadcrumb-item"><a href="/Home/OperationsList" class="breadcrumb-link">Operations</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Operation Details</li>
+									</ul>
+								</div>
+								<!-- breadcrumb-list - end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- breadcrumb-section - end
+		================================================== -->
+
+
+		@*
+public string Reference { get; set; }
+public string Type { get; set; }
+public string Nature { get; set; }
+public int AmountBeforeTax { get; set; }
+public int VAT { get; set; }
+public int ATI { get; set; }
+public string ModeOfPayment { get; set; }
+public Guid IntervenorId { get; set; }
+public string AppUserId { get; set; }
+public Guid SiteId { get; set; }
+
+
+public virtual IntervenorResponse Intervenor { get; set; }
+public virtual AppUserResponse AppUser { get; set; }
+public virtual SiteResponse Site { get; set; }
+		*@
+
+
+		<!-- operation-details-section - start
+		================================================== -->
+		<section id="operation-details-section" class="operation-details-section sec-ptb-100 clearfix">
+			<div class="container">
+				<div class="row">
+
+					<!-- col - operation-details - start -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+
+						<!-- operation-details - start -->
+						<div class="operation-details mb-80">
+
+							<div class="operation-title mb-30">
+								<span class="tag-item">
+									<i class="fas fa-bookmark"></i>
+									Details Operation
+								</span>
+								<h2 class="operation-title"> <strong>@Model.Date</strong></h2>
+							</div>
+
+							<div id="operation-details-carousel" class="operation-details-carousel owl-carousel owl-theme">
+								<div>
+									<img src="@Model.Reference" alt="Image_not_found">
+								</div>
+							</div>
+
+							<div class="operation-info-list ul-li clearfix mb-50">
+								<ul>
+									<li>
+										<span class="icon">
+											<i class="far fa-calendar"></i>
+										</span>
+										<div class="operation-content">
+											<small class="operation-title">Operation Date</small>
+											@*<h6 class="operation-date">@Model.StartsOn ~ @Model.EndsOn</h6>*@
+										</div>
+									</li>
+									<li>
+										<span class="icon">
+											<i class="far fa-clock"></i>
+										</span>
+										<div class="operation-content">
+											<small class="operation-title">Standard Price</small>
+											@*<h3 class="operation-date">@Model.Places.Min(x=>x.Price)<br /></h3>*@
+										</div>
+										
+									</li>
+									<li>
+										<span class="icon">
+											<i class="fas fa-map-marker-alt"></i>
+										</span>
+										<div class="operation-content">
+											<small class="operation-title">Operation Location</small>
+											@*<h3 class="operation-date">@Model.Lieu<br /></h3>*@
+										</div>
+									</li>
+								</ul>
+							</div>
+
+							<p class="black-color mb-30">
+								@*@Model.Description*@
+							</p>
+
+						</div>
+						<!-- operation-details - end -->
+
+					</div>
+					<!-- col - operation-details - end -->
+
+					<!-- sidebar-section - start -->
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="sidebar-section">
+
+							<!-- location-wrapper - start -->
+							<div class="location-wrapper mb-30">
+								<div class="title-wrapper">
+									<small class="up-arrow-icon">
+										<i class="fas fa-chevron-circle-up"></i>
+									</small>
+									<span class="icon">
+										<i class="fas fa-map-marker-alt"></i>
+									</span>
+									<div class="title-content">
+										<small>operation location</small>
+										@*<h3>@Model.Lieu</h3>*@
+									</div>
+								</div>
+								<div class="location-info-list ul-li-block clearfix">
+									@*<span class="area-name">@Model.Name</span>*@
+									<ul>
+										@*<li><i class="fas fa-arrow-circle-right"></i>@Model.StartsOn ~ @Model.EndsOn</li>*@
+										@*<li><i class="fas fa-arrow-circle-right"></i>@Model.Places</li>*@
+									</ul>
+								</div>
+								<div class="button">
+									<a href="#!" class="custom-btn">Acheter Ticket</a>
+								</div>
+								<div class="title-wrapper">
+									<small class="up-arrow-icon">
+										<i class="fas fa-chevron-circle-up"></i>
+									</small>
+									<span class="icon">
+										<i class="fas fa-link"></i>
+									</span>
+									<div class="title-content">
+										<small>contact information</small>
+										<h3>harmoni staff</h3>
+									</div>
+								</div>
+								<div class="contact-links ul-li-block clearfix">
+									<p class="black-color mb-30">
+										Fusce pellentesque velvitae tincidunt egestas. Pellentesque habitant. Proin gravida nibh vel velit auctor aliquet. sollicitudin, lorem quis more...
+									</p>
+									<ul>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fab fa-facebook-f"></i>
+												</span>
+												facebook.com/harmoni
+											</a>
+										</li>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fab fa-twitter"></i>
+												</span>
+												twitter.com@harmoni
+											</a>
+										</li>
+										<li>
+											<a href="#!" target="_blank">
+												<span class="icon">
+													<i class="fas fa-link"></i>
+												</span>
+												http://www.harmoni.com
+											</a>
+										</li>
+									</ul>
+									<a href="#!" class="custom-btn">CONTACT US NOW</a>
+								</div>
+							</div>
+							<!-- location-wrapper - end -->
+						</div>
+					</div>
+					<!-- sidebar-section - end -->
+					
+				</div>
+			</div>
+		</section>
+		<!-- operation-details-section - end
+		================================================== -->
+
+

@@ -56,7 +56,8 @@ namespace Repository
         public async Task<AppUser> GetDetailsAsync(string id)
         {
             return await _userManager.Users.Where(appUser => appUser.Id.Equals(id))
-                .Include(x => x.Transactions)
+                .Include(x => x.Site)
+                .Include(x => x.Operations)
                 .FirstOrDefaultAsync();
         }
 
@@ -85,7 +86,39 @@ namespace Repository
         #region ApplyFilters and PerformSearch Region
         private void ApplyFilters(ref IQueryable<AppUser> appUsers, AppUserParameters appUserParameters)
         {
-            appUsers = BaseFindAll();
+            /*
+            IList<string> strList1 = new List<string>() {
+                "One",
+                "Two",
+                "Three",
+                "Four"
+            };
+
+            IList<string> strList2 = new List<string>() {
+                "One",
+                "Two",
+                "Five",
+                "Six"
+            };
+
+            var innerJoin = strList1.Join(strList2,
+                                  str1 => str1,
+                                  str2 => str2,
+                                  (str1, str2) => str1);
+            */
+
+            /*Getting Users and Their Role in ASP.NET Core – AspNetUsers and AspNetUserRoles 
+             var listado = await (from user in context.Users
+                         join userRoles in context.UserRoles on user.Id equals userRoles.UserId
+                         join role in context.Roles on userRoles.RoleId equals role.Id
+                         select new { UserId = user.Id, UserName = user.UserName, RoleId = role.Id, RoleName = role.Name })
+                        .ToListAsync();
+             */
+
+
+            //////////
+            appUsers = BaseFindAll()
+                .Include(x=> x.Site);
 
 
             if (!string.IsNullOrEmpty(appUserParameters.WithRoleName))

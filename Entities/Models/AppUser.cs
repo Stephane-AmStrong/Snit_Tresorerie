@@ -11,7 +11,7 @@ namespace Entities.Models
     {
         public AppUser()
         {
-            Transactions = new HashSet<Transaction>();
+            Operations = new HashSet<Operation>();
         }
 
         public string ImgLink { get; set; }
@@ -19,7 +19,10 @@ namespace Entities.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        public Guid? SiteId { get; set; }
+        [ForeignKey("SiteId")]
+        public virtual Site Site { get; set; }
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<Operation> Operations { get; set; }
     }
 }

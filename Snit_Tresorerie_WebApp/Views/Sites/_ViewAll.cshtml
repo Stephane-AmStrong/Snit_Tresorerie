@@ -6,16 +6,31 @@
             <thead>
                 <tr>
                     <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Code)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Data.First().Name)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Data.First().Country)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Data.First().Headquarters)
+                        @Html.DisplayNameFor(model => model.Data.First().City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Telephone1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Telephone2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data.First().Email)
                     </th>
                     <th style="text-align:right">
-                        <a onclick="showInPopup('@Url.Action("Form","Sites",null,Context.Request.Scheme)','New Site')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+                        <a onclick="showInPopup('@Url.Action("Form","Sites",null,Context.Request.Scheme)','Création d Site')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
                     </th>
                 </tr>
             </thead>
@@ -24,22 +39,37 @@
                 {
                     <tr>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Country)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Headquarters)
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td style="text-align:right">
                             <a class="btn btn-sm btn-outline-info" asp-controller="Sites" asp-action="Details" asp-route-id="@item.Id">
                                 <i class="fas fa-info-circle" title="Details"></i>
                             </a>
-                            <a onclick="showInPopup('@Url.Action("Form","Sites",new {id=item.Id},Context.Request.Scheme)','Update Site')" class="btn btn-sm btn-outline-success">
+                            <a onclick="showInPopup('@Url.Action("Form","Sites",new {id=item.Id},Context.Request.Scheme)','Mise à jour d Site')" class="btn btn-sm btn-outline-success">
                                 <i class="fas fa-pencil-alt" title="Edit"></i>
                             </a>
-                            <a onclick="showInPopup('@Url.Action("Delete","Sites",new {id=item.Id},Context.Request.Scheme)','Delete Site')" class="btn btn-sm btn-outline-danger">
+                            <a onclick="showInPopup('@Url.Action("Delete","Sites",new {id=item.Id},Context.Request.Scheme)','Suppression d Site')" class="btn btn-sm btn-outline-danger">
                                 <i class="fas fa-trash" title="Delete"></i>
                             </a>
                         </td>

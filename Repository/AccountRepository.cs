@@ -77,6 +77,32 @@ namespace Repository
             };
         }
 
+        public async Task<Authentication> UpdateUserAsync(AppUser user)
+        {
+            if (user == null) throw new ArgumentNullException(nameof(user));
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                var generatedToken = await GenerateEmailConfirmationTokenAsync(user);
+                var encodeToken = await EncodeTokenAsync(generatedToken);
+
+                return new Authentication
+                {
+                    Token = encodeToken,
+                    IsSuccess = true,
+                };
+            }
+
+            return new Authentication
+            {
+                Message = "AppUser is not created",
+                IsSuccess = false,
+                ErrorDetails = result.Errors.Select(errorDescription => errorDescription.Description)
+            };
+        }
+
 
         public async Task<string> GenerateEmailConfirmationTokenAsync(AppUser appUser)
         {

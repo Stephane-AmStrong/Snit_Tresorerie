@@ -7,15 +7,7 @@
 <p class="login-box-msg">Création de compte</p>
 
 <form method="post" asp-action="Register">
-    <div class="input-group mb-3">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-user"></span>
-            </div>
-        </div>
-        <input asp-for="FirstName" class="form-control" placeholder="Prénoms">
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -24,8 +16,18 @@
             </div>
         </div>
         <input asp-for="LastName" class="form-control" placeholder="Nom">
-        <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
+    <span asp-validation-for="LastName" class="text-danger"></span>
+
+    <div class="input-group mb-3">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+        <input asp-for="FirstName" class="form-control" placeholder="Prénoms">
+    </div>
+    <span asp-validation-for="FirstName" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -34,8 +36,8 @@
             </div>
         </div>
         <input asp-for="Email" class="form-control" placeholder="Email">
-        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
+    <span asp-validation-for="Email" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -44,8 +46,8 @@
             </div>
         </div>
         <input asp-for="Password" class="form-control" placeholder="Mot de passe">
-        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <span asp-validation-for="Password" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -54,8 +56,8 @@
             </div>
         </div>
         <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirmez votre mot de passe">
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
     </div>
+    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -63,13 +65,13 @@
                 <span class="fas fa-user-tag"></span>
             </div>
         </div>
-        <select asp-for="RoleId" class="form-control" asp-items="ViewBag.WorkstationId"></select>
+        <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
     </div>
     <div class="row">
         <div class="col-8">
             <!--<div class="icheck-primary">-->
-                @*<input asp-for="checkbox" id="agreeTerms" name="terms" value="agree">*@
-                <!--<label for="agreeTerms">
+            @*<input asp-for="checkbox" id="agreeTerms" name="terms" value="agree">*@
+            <!--<label for="agreeTerms">
                     I agree to the <a href="#">terms</a>
                 </label>
             </div>-->
@@ -84,14 +86,14 @@
 
 @*
     <div class="social-auth-links text-center">
-        <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i>
-            Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i>
-            Sign up using Google+
-        </a>
+    <a href="#" class="btn btn-block btn-primary">
+    <i class="fab fa-facebook mr-2"></i>
+    Sign up using Facebook
+    </a>
+    <a href="#" class="btn btn-block btn-danger">
+    <i class="fab fa-google-plus mr-2"></i>
+    Sign up using Google+
+    </a>
     </div>
 *@
 

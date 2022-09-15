@@ -9,23 +9,72 @@
         <input asp-for="Id" type="hidden" class="form-control" />
         <input asp-for="AppUserId" type="hidden" class="form-control" />
 
-        <div class="form-group">
-            <label asp-for="Name" class="control-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label asp-for="Code" class="control-label"></label>
+                    <input asp-for="Code" class="form-control" />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+            </div>
         </div>
 
         <div class="form-group">
-            <label asp-for="Country" class="control-label"></label>
-            <input asp-for="Country" class="form-control" />
-            <span asp-validation-for="Country" class="text-danger"></span>
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Telephone1" class="control-label"></label>
+                    <input asp-for="Telephone1" class="form-control" />
+                    <span asp-validation-for="Telephone1" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Telephone2" class="control-label"></label>
+                    <input asp-for="Telephone2" class="form-control" />
+                    <span asp-validation-for="Telephone2" class="text-danger"></span>
+                </div>
+
+            </div>
         </div>
         
-
         <div class="form-group">
-            <label asp-for="Headquarters" class="control-label"></label>
-            <input asp-for="Headquarters" class="form-control" />
-            <span asp-validation-for="Headquarters" class="text-danger"></span>
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
     </div>

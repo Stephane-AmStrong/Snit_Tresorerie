@@ -1,4 +1,4 @@
-﻿using Entities.Seeds;
+﻿using Repository.Seeds;
 
 namespace Snit_Tresorerie_WebApp.Extensions
 {

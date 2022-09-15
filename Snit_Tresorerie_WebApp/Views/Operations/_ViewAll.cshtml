@@ -1,0 +1,19 @@
+﻿@model PagedResponse<IEnumerable<OperationResponse>>
+
+    <div class="row">
+    <div class="col-12"  style="text-align:right">
+        <a onclick="showInPopup('@Url.Action("Form","Operations",null,Context.Request.Scheme)','New Operation')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+    </div>
+    <div class="col-12">
+        <div>dd</div>
+        <div>dd</div>
+        <div>dd</div>
+        <div>dd</div>
+        @foreach (var operation in Model.Data)
+        {
+            <partial name="OperationCard" for="@operation" />
+        }
+    </div>
+
+
+</div>

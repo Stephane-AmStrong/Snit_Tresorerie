@@ -75,7 +75,6 @@ namespace Snit_Tresorerie_WebApp.Controllers
 
             ViewBag.Title = "Liste des Sites";
             return pagedSites;
-            //return sitesResponse;
         }
 
 

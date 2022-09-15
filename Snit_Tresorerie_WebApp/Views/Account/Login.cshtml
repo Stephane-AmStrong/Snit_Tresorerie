@@ -17,26 +17,30 @@
             </div>
         </div>
     </div>
+    <span asp-validation-for="Email" class="text-danger"></span>
+
     <div class="input-group mb-3">
-        <input asp-for="Password" class="form-control" placeholder="Password">
+        <input asp-for="Password" class="form-control" placeholder="Mot de passe">
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-lock"></span>
             </div>
         </div>
     </div>
+    <span asp-validation-for="Password" class="text-danger"></span>
+
     <div class="row">
         <div class="col-8">
             <div class="icheck-primary">
                 <input type="checkbox" id="remember" asp-for="RememberMe">
                 <label for="remember">
-                    Remember Me
+                    Se Rappeler de moi
                 </label>
             </div>
         </div>
         <!-- /.col -->
         <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">S'Authentifier</button>
         </div>
         <!-- /.col -->
     </div>
@@ -57,6 +61,8 @@
 <p class="mb-1">
     <a asp-controller="Account" asp-action="ForgotPassword">J'ai oublié mon mot de passe</a>
 </p>
+
+@*
 @if (await repository.Account.CountUsersAsync()<1)
 {
     <p class="mb-0">
@@ -69,3 +75,4 @@ else
         <a asp-controller="Account" asp-action="Register" class="text-center">S'inscrire comme nouveau membre</a>
     </p>
 }
+*@

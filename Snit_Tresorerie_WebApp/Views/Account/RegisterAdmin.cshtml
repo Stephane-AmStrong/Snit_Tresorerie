@@ -6,19 +6,9 @@
 
 <p class="login-box-msg">Création de compte administrateur</p>
 
-<form method="post" asp-controller="Account" asp-action="RegisterAdmin"
-      data-ajax="true" data-ajax-method="POST"
-      data-ajax-begin="OnBegin" data-ajax-complete="OnComplete"
-      data-ajax-failure="OnFailure" data-ajax-success="OnSuccess">
+<form method="post" asp-controller="Account" asp-action="RegisterAdmin">
 
-    <div class="input-group mb-3">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-user-alt"></span>
-            </div>
-        </div>
-        <input asp-for="FirstName" class="form-control" placeholder="Prénoms">
-    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -28,6 +18,17 @@
         </div>
         <input asp-for="LastName" class="form-control" placeholder="Nom">
     </div>
+    <span asp-validation-for="LastName" class="text-danger"></span>
+    
+    <div class="input-group mb-3">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user-alt"></span>
+            </div>
+        </div>
+        <input asp-for="FirstName" class="form-control" placeholder="Prénoms">
+    </div>
+    <span asp-validation-for="FirstName" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -37,6 +38,7 @@
         </div>
         <input asp-for="Email" class="form-control" placeholder="Email">
     </div>
+    <span asp-validation-for="Email" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -46,6 +48,7 @@
         </div>
         <input asp-for="Password" class="form-control" placeholder="Mot de passe">
     </div>
+    <span asp-validation-for="Password" class="text-danger"></span>
 
     <div class="input-group mb-3">
         <div class="input-group-append">
@@ -55,6 +58,7 @@
         </div>
         <input asp-for="ConfirmPassword" class="form-control" placeholder="Retapez le mot de passe">
     </div>
+    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
     <div class="row">
         <div class="col-7">

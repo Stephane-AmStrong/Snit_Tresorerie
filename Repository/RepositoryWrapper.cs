@@ -20,13 +20,13 @@ namespace Repository
     {
         private IFileRepository _fileRepository;
         private IAccountRepository _authenticationRepository;
-        private IActorRepository _actorRepository;
+        private IIntervenorRepository _intervenorRepository;
         private IAppUserRepository _appUser;
-        private IPaymentTypeRepository _paymentTypeRepository;
+        private IPaymentOptionRepository _paymentOptionRepository;
         private ISiteRepository _siteRepository;
-        private ITransactionRepository _transactionRepository;
+        private IOperationRepository _operationRepository;
+        private IOperationTypeRepository _operationTypeRepository;
         //private IDinkToPdfRepository _dinkToPdfRepository;
-        private IQrCodeRepository _qrCodeRepository;
 
         private IEmailSenderRepository _emailSender;
         private IWebHostEnvironment _webHostEnvironment;
@@ -38,10 +38,11 @@ namespace Repository
         //private IOptions<EmailSettings> _emailSettings;
 
         private readonly ISortHelper<AppUser> _appUserSortHelper;
-        private readonly ISortHelper<Actor> _actorSortHelper;
-        private readonly ISortHelper<PaymentType> _paymentTypeSortHelper;
+        private readonly ISortHelper<Intervenor> _intervenorSortHelper;
+        private readonly ISortHelper<PaymentOption> _paymentOptionSortHelper;
         private readonly ISortHelper<Site> _siteSortHelper;
-        private readonly ISortHelper<Transaction> _transactionSortHelper;
+        private readonly ISortHelper<Operation> _operationSortHelper;
+        private readonly ISortHelper<OperationType> _operationTypeSortHelper;
         private readonly ISortHelper<IdentityRole> _roleSortHelper;
 
         private RepositoryContext _repoContext;
@@ -78,39 +79,52 @@ namespace Repository
                 return _authenticationRepository;
             }
         }
-        public IActorRepository Actor
+
+        public IIntervenorRepository Intervenor
         {
             get
             {
-                if (_actorRepository == null)
+                if (_intervenorRepository == null)
                 {
-                    _actorRepository = new ActorRepository(_repoContext, _actorSortHelper);
+                    _intervenorRepository = new IntervenorRepository(_repoContext, _intervenorSortHelper);
                 }
-                return _actorRepository;
+                return _intervenorRepository;
             }
         }
 
-        public IPaymentTypeRepository PaymentType
+        public IPaymentOptionRepository PaymentOption
         {
             get
             {
-                if (_paymentTypeRepository == null)
+                if (_paymentOptionRepository == null)
                 {
-                    _paymentTypeRepository = new PaymentTypeRepository(_repoContext, _paymentTypeSortHelper);
+                    _paymentOptionRepository = new PaymentOptionRepository(_repoContext, _paymentOptionSortHelper);
                 }
-                return _paymentTypeRepository;
+                return _paymentOptionRepository;
             }
         }
 
-        public ITransactionRepository Transaction
+        public IOperationRepository Operation
         {
             get
             {
-                if (_transactionRepository == null)
+                if (_operationRepository == null)
                 {
-                    _transactionRepository = new TransactionRepository(_repoContext, _transactionSortHelper);
+                    _operationRepository = new OperationRepository(_repoContext, _operationSortHelper);
                 }
-                return _transactionRepository;
+                return _operationRepository;
+            }
+        }
+
+        public IOperationTypeRepository OperationType
+        {
+            get
+            {
+                if (_operationTypeRepository == null)
+                {
+                    _operationTypeRepository = new OperationTypeRepository(_repoContext, _operationTypeSortHelper);
+                }
+                return _operationTypeRepository;
             }
         }
 
@@ -137,18 +151,6 @@ namespace Repository
         //        return _dinkToPdfRepository;
         //    }
         //}
-
-        public IQrCodeRepository QrCode
-        {
-            get
-            {
-                if (_qrCodeRepository == null)
-                {
-                    _qrCodeRepository = new QrCodeRepository();
-                }
-                return _qrCodeRepository;
-            }
-        }
 
         public IAppUserRepository AppUser
         {
@@ -202,11 +204,12 @@ namespace Repository
             IConfiguration configuration,
             //IConverter converter,
             ISortHelper<AppUser> appUserSortHelper,
-            ISortHelper<Actor> actorSortHelper,
-            ISortHelper<PaymentType> paymentTypeSortHelper,
+            ISortHelper<Intervenor> intervenorSortHelper,
+            ISortHelper<PaymentOption> paymentOptionSortHelper,
             ISortHelper<Site> siteSortHelper,
             ISortHelper<IdentityRole> roleSortHelper,
-            ISortHelper<Transaction> transactionSortHelper,
+            ISortHelper<Operation> operationSortHelper,
+            ISortHelper<OperationType> operationTypeSortHelper,
 
             IHttpContextAccessor httpContextAccessor)
         {
@@ -217,11 +220,12 @@ namespace Repository
             _repoContext = repositoryContext;
 
             _appUserSortHelper = appUserSortHelper;
-            _actorSortHelper = actorSortHelper;
-            _paymentTypeSortHelper = paymentTypeSortHelper;
+            _intervenorSortHelper = intervenorSortHelper;
+            _paymentOptionSortHelper = paymentOptionSortHelper;
             _siteSortHelper = siteSortHelper;
             _roleSortHelper = roleSortHelper;
-            _transactionSortHelper = transactionSortHelper;
+            _operationSortHelper = operationSortHelper;
+            _operationTypeSortHelper = operationTypeSortHelper;
 
             _emailConfig = emailConfig;
             _webHostEnvironment = webHostEnvironment;

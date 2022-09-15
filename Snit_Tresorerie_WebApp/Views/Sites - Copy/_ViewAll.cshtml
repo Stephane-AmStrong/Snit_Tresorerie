@@ -1,4 +1,4 @@
-﻿@model PagedResponse<IEnumerable<TransactionResponse>>
+﻿@model PagedResponse<IEnumerable<OperationResponse>>
 
 <table class="table table-hover">
     <thead>
@@ -25,17 +25,17 @@
                 @Html.DisplayNameFor(model => model.Data.First().ATI)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data.First().ActorId)
+                @Html.DisplayNameFor(model => model.Data.First().IntervenorId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data.First().PaymentTypeId)
+                @Html.DisplayNameFor(model => model.Data.First().PaymentOptionId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Data.First().SiteId)
             </th>
 
             <th>
-                <a onclick="showInPopup('@Url.Action("Form","Transactions",null,Context.Request.Scheme)','New Transaction')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
+                <a onclick="showInPopup('@Url.Action("Form","Operations",null,Context.Request.Scheme)','New Operation')" class="btn btn-success text-white"><i class="fas fa-plus"></i> Ajouter</a>
             </th>
         </tr>
     </thead>
@@ -65,22 +65,22 @@
                     @Html.DisplayFor(modelItem => item.ATI)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Actor)
+                    @Html.DisplayFor(modelItem => item.Intervenor)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PaymentType)
+                    @Html.DisplayFor(modelItem => item.PaymentOption)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Site)
                 </td>
                 <td>
-                    <a class="btn btn-sm btn-outline-info" asp-controller="Transactions" asp-action="Details" asp-route-id="@item.Id">
+                    <a class="btn btn-sm btn-outline-info" asp-controller="Operations" asp-action="Details" asp-route-id="@item.Id">
                         <i class="fas fa-info-circle" title="Details"></i>
                     </a>
-                    <a onclick="showInPopup('@Url.Action("Form","Transactions",new {id=item.Id},Context.Request.Scheme)','Update Transaction')" class="btn btn-sm btn-outline-success">
+                    <a onclick="showInPopup('@Url.Action("Form","Operations",new {id=item.Id},Context.Request.Scheme)','Update Operation')" class="btn btn-sm btn-outline-success">
                         <i class="fas fa-pencil-alt" title="Edit"></i>
                     </a>
-                    <a onclick="showInPopup('@Url.Action("Delete","Transactions",new {id=item.Id},Context.Request.Scheme)','Delete Transaction')" class="btn btn-sm btn-outline-danger">
+                    <a onclick="showInPopup('@Url.Action("Delete","Operations",new {id=item.Id},Context.Request.Scheme)','Delete Operation')" class="btn btn-sm btn-outline-danger">
                         <i class="fas fa-trash" title="Delete"></i>
                     </a>
                 </td>

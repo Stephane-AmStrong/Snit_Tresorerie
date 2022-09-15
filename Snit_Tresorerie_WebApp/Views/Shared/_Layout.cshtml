@@ -89,22 +89,49 @@
             </div>
             <!-- /.content-header -->
             <!-- Main content -->
-            @RenderBody()
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body" id="view-all">
+                                    @RenderBody()
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
+
         <!-- modal -->
         <div class="modal fade" tabindex="-1" id="form-modal" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
+                    <div id="overlay">
+                    </div>
+
                     <div class="modal-header">
-                        <h4 class="modal-title"></h4>
+                        <h4 class="modal-title">@ViewBag.FormTitle</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    
                     <div class="modal-body">
                     </div>
+
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -128,7 +155,8 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
-    <script src="~/templates/admin-lte/plugins/jquery/jquery.min.js"></script>
+    @*<script src="~/templates/admin-lte/plugins/jquery/jquery.min.js"></script>*@
+    <script src="~/jquery/jquery.min.js"></script>
 
     <!-- jquery-ajax-unobtrusive -->
     <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
@@ -166,7 +194,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/templates/admin-lte/dist/js/pages/dashboard.js"></script>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/handle-popup.js" asp-append-version="true"></script>
     <script src="~/js/notify.min.js" asp-append-version="true"></script>
 
 

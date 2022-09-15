@@ -1,0 +1,11 @@
+﻿@model PagedResponse<IEnumerable<OperationResponse>>
+
+@await Html.PartialAsync("_ViewAll", Model)
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#navOperations").attr("class", "nav-link active");
+        });
+    </script>
+}

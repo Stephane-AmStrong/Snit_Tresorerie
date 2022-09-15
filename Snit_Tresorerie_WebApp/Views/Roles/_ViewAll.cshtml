@@ -1,0 +1,43 @@
+﻿@model IEnumerable<RoleResponse>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "role.manage.policy")).Succeeded)
+            {
+                <th style="text-align:right">
+                    <a onclick="showInPopup('@Url.Action("Form","Roles",null,Context.Request.Scheme)','Création d\'un Profil')" class="btn btn-success text-white"><i class="fas fa-plus"></i>Ajouter</a>
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody id="example2body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @if ((await AuthorizationService.AuthorizeAsync(User, "role.manage.policy")).Succeeded)
+                {
+                    <td style="text-align:right">
+                        <a class="btn btn-sm btn-outline-info" asp-controller="Roles" asp-action="Details" asp-route-id="@item.Id">
+                            <i class="fas fa-info-circle" title="Details"></i>
+                        </a>
+                        <a onclick="showInPopup('@Url.Action("Form","Roles",new {id=item.Id},Context.Request.Scheme)','Mise à jour d\'un Profil')" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-pencil-alt" title="Edit"></i>
+                        </a>
+                        <a onclick="showInPopup('@Url.Action("Delete","Roles",new {id=item.Id},Context.Request.Scheme)','Suppression d\'un Profil')" class="btn btn-sm btn-outline-danger d-inline">
+                            <i class="fas fa-trash" title="Delete"></i>
+                        </a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+

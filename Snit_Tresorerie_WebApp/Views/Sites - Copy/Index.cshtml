@@ -1,40 +1,11 @@
-﻿@model PagedResponse<IEnumerable<TransactionResponse>>
+﻿@model PagedResponse<IEnumerable<OperationResponse>>
 
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">@ViewBag.Title</h3>
-                <div class="card-tools">
-                    <ul class="pagination pagination-sm float-right">
-                        @foreach (var link in Model.Links)
-                        {
-                            var transactionParameters = new Dictionary<string, string>
-                            {
-                                { "PageNumber", link.Text },
-                            };
+@await Html.PartialAsync("_ViewAll", Model)
 
-                            <li class="page-item @(link.Enabled ? null : "disabled") @(link.Active ? "active" : null)"><a class="page-link" asp-action="Index" asp-all-route-data="transactionParameters">@link.Text</a></li>
-                        }
-                    </ul>
-                </div>
-
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0" id="view-all">
-                @await Html.PartialAsync("_ViewAll", Model)
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </div>
-    <!-- /.container-fluid -->
-</section>
-<!-- /.content -->
 @section Scripts {
 <script>
     $(document).ready(function () {
-        $("#navTransactions").attr("class", "nav-link active");
+        $("#navOperations").attr("class", "nav-link active");
     });
 </script>
 }

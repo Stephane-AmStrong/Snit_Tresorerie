@@ -57,7 +57,16 @@ namespace Repository
 
         public async Task<bool> ExistAsync(Site site)
         {
-            return await BaseFindByCondition(x => x.Name == site.Name && x.Country == site.Country && x.Headquarters == site.Headquarters)
+            return await BaseFindByCondition(
+                    x => x.Code == site.Code && 
+                    x.Name == site.Name && 
+                    x.Country == site.Country && 
+                    x.City == site.City && 
+                    x.Address == site.Address && 
+                    x.Telephone1 == site.Telephone1 && 
+                    x.Telephone2 == site.Telephone2 && 
+                    x.Email == site.Email
+                )
                 .AnyAsync();
         }
 

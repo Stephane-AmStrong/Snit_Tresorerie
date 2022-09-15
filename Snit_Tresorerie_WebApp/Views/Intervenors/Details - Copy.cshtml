@@ -1,0 +1,41 @@
+﻿@model IntervenorResponse
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card card-solid">
+        <div class="card-body">
+            <div class="col-12 col-sm-6 text-center">
+                <img src="@Model.ImgLink" asp-append-version="true" alt="event-avatar" img-fluid">
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <dl>
+
+                    <dt>@Html.DisplayNameFor(model => model.FirstName)</dt>
+                    <dd>@Html.DisplayFor(model => model.FirstName)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
+                    <dd>@Html.DisplayFor(model => model.LastName)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => model.BankAccount)</dt>
+                    <dd>@Html.DisplayFor(model => model.BankAccount)</dd>
+
+                </dl>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $("#navIntervenors").attr("class", "nav-link active");
+    });
+</script>
+}

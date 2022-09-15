@@ -29,32 +29,26 @@
                 <li class="nav-item">
                     <a asp-controller="Dashboard" asp-action="Index" class="nav-link" id="navDashboard">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p>Tableau de bord</p>
                     </a>
                 </li>
 
 
-                @if ((await AuthorizationService.AuthorizeAsync(User, "actor.manage.policy")).Succeeded)
+                @if ((await AuthorizationService.AuthorizeAsync(User, "intervenor.manage.policy")).Succeeded)
                 {
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tasks"></i>
-                            <p>
-                                Acteurs <i class="fas fa-angle-left right"></i>
-                            </p>
+                        <a asp-controller="Intervenors" asp-action="Index" class="nav-link" id="navCustomers">
+                            <i class="fas fa-user-tie nav-icon"></i> <p>Intervenants</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a asp-controller="SubCategories" asp-action="Index" class="nav-link" id="navSubCategories">
-                                    <i class="far fa-circle nav-icon"></i> <p>Clients</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Commercials" asp-action="Index" class="nav-link" id="navCommercials">
-                                    <i class="far fa-circle nav-icon"></i> <p>Fournisseurs</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                }
+
+                @if ((await AuthorizationService.AuthorizeAsync(User, "paymentOption.manage.policy")).Succeeded)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="PaymentOptions" asp-action="Index" class="nav-link" id="navPaymentOptions">
+                            <i class="far fa-circle nav-icon"></i> <p>Mode de paiement</p>
+                        </a>
                     </li>
                 }
 
@@ -63,15 +57,6 @@
                     <li class="nav-item">
                         <a asp-controller="AppUsers" asp-action="Index" class="nav-link" id="navAppUsers">
                             <i class="nav-icon fas fa-users"></i> <p>Utilisateurs</p>
-                        </a>
-                    </li>
-                }
-
-                @if ((await AuthorizationService.AuthorizeAsync(User, "paymentType.read.policy")).Succeeded)
-                {
-                    <li class="nav-item">
-                        <a asp-controller="PaymentTypes" asp-action="Index" class="nav-link" id="navPaymentTypes">
-                            <i class="nav-icon fas fa-image"></i> <p>Types de Payment</p>
                         </a>
                     </li>
                 }
@@ -85,21 +70,29 @@
                     </li>
                 }
 
-                @if ((await AuthorizationService.AuthorizeAsync(User, "transaction.read.policy")).Succeeded)
+                @if ((await AuthorizationService.AuthorizeAsync(User, "operation.read.policy")).Succeeded)
                 {
                     <li class="nav-item">
-                        <a asp-controller="Transactions" asp-action="Index" class="nav-link" id="navTransactions">
-                            <i class="nav-icon fas fa-table"></i> <p>Transactions</p>
+                        <a asp-controller="Operations" asp-action="Index" class="nav-link" id="navOperations">
+                            <i class="nav-icon fas fa-table"></i> <p>Opérations</p>
                         </a>
                     </li>
                 }
 
-
                 @if ((await AuthorizationService.AuthorizeAsync(User, "role.manage.policy")).Succeeded)
                 {
                     <li class="nav-item">
-                        <a asp-controller="Workstations" asp-action="Index" class="nav-link" id="navWorkstations">
-                            <i class="nav-icon fas fa-warehouse"></i> <p>Roles</p>
+                        <a asp-controller="Roles" asp-action="Index" class="nav-link" id="navRoles">
+                            <i class="nav-icon fas fa-warehouse"></i> <p>Profils</p>
+                        </a>
+                    </li>
+                }
+
+                @if ((await AuthorizationService.AuthorizeAsync(User, "operationType.manage.policy")).Succeeded)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="OperationTypes" asp-action="Index" class="nav-link" id="navOperationTypes">
+                            <i class="far fa-circle nav-icon"></i> <p>Type d'opération</p>
                         </a>
                     </li>
                 }

@@ -22,36 +22,6 @@ namespace Entities.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Models.Actor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("BankAccount")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ImgLink")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Actors");
-                });
-
             modelBuilder.Entity("Entities.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -108,6 +78,9 @@ namespace Entities.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("SiteId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
@@ -124,28 +97,12 @@ namespace Entities.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.HasIndex("SiteId");
+
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Models.PaymentType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaymentTypes");
-                });
-
-            modelBuilder.Entity("Entities.Models.Site", b =>
+            modelBuilder.Entity("Entities.Models.Intervenor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -155,21 +112,27 @@ namespace Entities.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("BankAccount")
                         .HasColumnType("text");
 
-                    b.Property<string>("Headquarters")
+                    b.Property<string>("FirstName")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ImgLink")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sites");
+                    b.ToTable("Intervenors");
                 });
 
-            modelBuilder.Entity("Entities.Models.Transaction", b =>
+            modelBuilder.Entity("Entities.Models.Operation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,9 +140,6 @@ namespace Entities.Migrations
 
                     b.Property<int>("ATI")
                         .HasColumnType("integer");
-
-                    b.Property<Guid>("ActorId")
-                        .HasColumnType("uuid");
 
                     b.Property<int>("AmountBeforeTax")
                         .HasColumnType("integer");
@@ -190,10 +150,16 @@ namespace Entities.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("IntervenorId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("PaymentTypeId")
+                    b.Property<Guid>("OperationTypeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PaymentOptionId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Reference")
@@ -210,15 +176,92 @@ namespace Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActorId");
-
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("PaymentTypeId");
+                    b.HasIndex("IntervenorId");
+
+                    b.HasIndex("OperationTypeId");
+
+                    b.HasIndex("PaymentOptionId");
 
                     b.HasIndex("SiteId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Operations");
+                });
+
+            modelBuilder.Entity("Entities.Models.OperationType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OperationTypes");
+                });
+
+            modelBuilder.Entity("Entities.Models.PaymentOption", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentOptions");
+                });
+
+            modelBuilder.Entity("Entities.Models.Site", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telephone1")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telephone2")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sites");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -353,35 +396,52 @@ namespace Entities.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Models.Transaction", b =>
+            modelBuilder.Entity("Entities.Models.AppUser", b =>
                 {
-                    b.HasOne("Entities.Models.Actor", "Actor")
-                        .WithMany("Transactions")
-                        .HasForeignKey("ActorId")
+                    b.HasOne("Entities.Models.Site", "Site")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("SiteId");
+
+                    b.Navigation("Site");
+                });
+
+            modelBuilder.Entity("Entities.Models.Operation", b =>
+                {
+                    b.HasOne("Entities.Models.AppUser", "AppUser")
+                        .WithMany("Operations")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Entities.Models.Intervenor", "Intervenor")
+                        .WithMany("Operations")
+                        .HasForeignKey("IntervenorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.AppUser", "AppUser")
-                        .WithMany("Transactions")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("Entities.Models.OperationType", "OperationType")
+                        .WithMany("Operations")
+                        .HasForeignKey("OperationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Entities.Models.PaymentType", "PaymentType")
-                        .WithMany("Transactions")
-                        .HasForeignKey("PaymentTypeId")
+                    b.HasOne("Entities.Models.PaymentOption", "PaymentOption")
+                        .WithMany("Operations")
+                        .HasForeignKey("PaymentOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.Site", "Site")
-                        .WithMany("Transactions")
+                        .WithMany()
                         .HasForeignKey("SiteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Actor");
-
                     b.Navigation("AppUser");
 
-                    b.Navigation("PaymentType");
+                    b.Navigation("Intervenor");
+
+                    b.Navigation("OperationType");
+
+                    b.Navigation("PaymentOption");
 
                     b.Navigation("Site");
                 });
@@ -437,24 +497,29 @@ namespace Entities.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entities.Models.Actor", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
             modelBuilder.Entity("Entities.Models.AppUser", b =>
                 {
-                    b.Navigation("Transactions");
+                    b.Navigation("Operations");
                 });
 
-            modelBuilder.Entity("Entities.Models.PaymentType", b =>
+            modelBuilder.Entity("Entities.Models.Intervenor", b =>
                 {
-                    b.Navigation("Transactions");
+                    b.Navigation("Operations");
+                });
+
+            modelBuilder.Entity("Entities.Models.OperationType", b =>
+                {
+                    b.Navigation("Operations");
+                });
+
+            modelBuilder.Entity("Entities.Models.PaymentOption", b =>
+                {
+                    b.Navigation("Operations");
                 });
 
             modelBuilder.Entity("Entities.Models.Site", b =>
                 {
-                    b.Navigation("Transactions");
+                    b.Navigation("AppUsers");
                 });
 #pragma warning restore 612, 618
         }

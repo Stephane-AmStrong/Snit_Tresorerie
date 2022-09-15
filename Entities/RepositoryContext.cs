@@ -15,11 +15,12 @@ namespace Entities
         }
 
 
-        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Intervenor> Intervenors { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<PaymentType> PaymentTypes { get; set; }
+        public DbSet<PaymentOption> PaymentOptions { get; set; }
         public DbSet<Site> Sites { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Operation> Operations { get; set; }
+        public DbSet<OperationType> OperationTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

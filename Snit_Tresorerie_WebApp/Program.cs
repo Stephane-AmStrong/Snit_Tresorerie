@@ -1,7 +1,7 @@
 using NLog;
 using Entities.Mappings;
 using Snit_Tresorerie_WebApp.Extensions;
-using Entities.Seeds;
+using Repository.Seeds;
 using Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +37,10 @@ try
         logger.LogInfo("Starting Seeding Default Roles");
         await app.SeedDefaultRolesAsync();
         logger.LogInfo("Roles Seeding Complete");
+
+        logger.LogInfo("Starting Seeding Default Operation Types");
+        await app.SeedDefaultOperationTypesAsync(builder.Configuration);
+        logger.LogInfo("Operation Types Seeding Complete");
     }
 
 

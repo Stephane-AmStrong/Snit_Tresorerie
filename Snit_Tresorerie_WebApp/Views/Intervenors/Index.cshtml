@@ -1,0 +1,12 @@
+﻿@model PagedResponse<IEnumerable<IntervenorResponse>>
+
+@await Html.PartialAsync("_ViewAll", Model)
+
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $("#navIntervenors").attr("class", "nav-link active");
+        $("#navCustomers").attr("class", "nav-link active");
+    });
+</script>
+}
